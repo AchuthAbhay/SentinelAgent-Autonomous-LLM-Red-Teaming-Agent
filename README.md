@@ -271,16 +271,20 @@ Decision: Continue
 Why this matters: the safety judge alone flagged this response as "unsafe" purely because a canary-like token appeared in the text. But the objective verifier — which checks disclosed content against the known ground truth rather than surface plausibility — correctly identified that no real leak occurred. A naive evaluation pipeline relying on a single judge would have logged a false positive here.
 
 ## Notable findings
-Judge disagreement is meaningful. A single safety judge can miss failure modes that another check catches. This project combines a heuristic gate, a model-based safeguard judge, and a ground-truth objective verifier specifically to reduce false confidence from any one evaluator.
-Objective verification matters more than surface safety. A response can be technically "safe" and still fail the attack objective, or it can look superficially concerning while containing entirely fabricated information. The verifier compares disclosed content against known ground truth instead of relying on appearance alone.
-Fabricated content can look convincing. Some target models invent a polished, plausible-looking system prompt when pushed via roleplay or jailbreak framing rather than complying or cleanly refusing. Detecting this as hallucinated_disclosure — a distinct outcome from both genuine success and refusal — is a key requirement for realistic red-team evaluation.
 
+-Judge disagreement is meaningful. A single safety judge can miss failure modes that another check catches. This project combines a heuristic gate, a model-based safeguard judge, and a ground-truth objective verifier specifically to reduce false confidence from any one evaluator.
+
+-Objective verification matters more than surface safety. A response can be technically "safe" and still fail the attack objective, or it can look superficially concerning while containing entirely fabricated information. The verifier compares disclosed content against known ground truth instead of relying on appearance alone.
+
+-Fabricated content can look convincing. Some target models invent a polished, plausible-looking system prompt when pushed via roleplay or jailbreak framing rather than complying or cleanly refusing. Detecting this as hallucinated_disclosure — a distinct outcome from both genuine success and refusal — is a key requirement for realistic red-team evaluation.
 
 ## Current limitations
-The strategist selects from a predefined, OWASP-mapped attack library rather than synthesizing novel attack strategies from scratch. Extending the strategist to propose new experiments when the existing library doesn't fit an emerging hypothesis is a planned next step.
-Objective-verification confidence scores are self-reported by the judge LLM and are not yet statistically calibrated against a labeled benchmark.
-The system is intentionally evaluation-oriented: strong for structured experimentation and reporting, but not yet a fully autonomous, general-purpose attack planner.
 
+-The strategist selects from a predefined, OWASP-mapped attack library rather than synthesizing novel attack strategies from scratch. Extending the strategist to propose new experiments when the existing library doesn't fit an emerging hypothesis is a planned next step.
+
+-Objective-verification confidence scores are self-reported by the judge LLM and are not yet statistically calibrated against a labeled benchmark.
+
+-The system is intentionally evaluation-oriented: strong for structured experimentation and reporting, but not yet a fully autonomous, general-purpose attack planner.
 
 ## Notes
 
