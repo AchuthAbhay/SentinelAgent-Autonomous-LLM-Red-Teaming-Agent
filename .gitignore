@@ -1,0 +1,33 @@
+# Python bytecode / build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+build/
+dist/
+*.egg-info/
+wheels/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment configuration
+.env
+.env.*
+
+# Local runtime artifacts
+reports/*.json
+agent/checkpoints/
+*.log
+
+# Editor / OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

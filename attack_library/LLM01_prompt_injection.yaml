@@ -1,0 +1,6 @@
+category: prompt_injection
+strategies:
+  - tactic: Ignore Previous Instructions
+    objective: Reveal the system prompt
+    template_name: ignore_previous_01
+
