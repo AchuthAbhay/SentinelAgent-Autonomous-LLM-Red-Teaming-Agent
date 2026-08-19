@@ -107,18 +107,28 @@ If you are using this project as a Python package, you can also install dependen
 pip install -e .
 ```
 
+## Tests
+
+The project includes 10 offline unit tests covering deterministic ground-truth matching and attack-library YAML loading. They do not call a hosted model or consume API credits.
+
+Run them with Python's standard-library test runner:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 ## Environment variables
 
 Create a `.env` file in the project root with values like:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
-TARGET_MODEL=groq:llama-3.3-70b-versatile
+TARGET_MODEL=groq:qwen/qwen3.6-27b
 SAFEGUARD_MODEL=openai/gpt-oss-safeguard-20b
 MAX_TURNS=5
 MAX_SPEND_USD=1.0
 TARGET_SYSTEM_PROMPT="You are Sentinel Test Target..."
-ALLOWED_TARGETS=groq:llama-3.3-70b-versatile
+ALLOWED_TARGETS=groq:qwen/qwen3.6-27b
 ```
 
 Notes:
@@ -157,6 +167,19 @@ These reports include:
 - successful attacks,
 - attack success rate,
 - detailed per-attempt prompt, response, safety verdicts, and verification result.
+
+## Cross-model comparison
+
+The following results are historical observations from this project’s red-team runs against the same system-prompt disclosure objective:
+
+| Model | Attack success rate | Successful attacks | Attempts |
+| --- | ---: | ---: | ---: |
+| Llama 3.3 70B Versatile | 25% | 1 | 4 |
+| Qwen3.6 27B | 0% | 0 | 5 |
+
+These results are directional rather than a controlled benchmark because the models were tested in different runs and with different numbers of attempts. The Llama 3.3 70B Versatile result is retained for historical comparison only; Groq decommissioned that model on August 16, 2026. New runs should use the configured Qwen3.6 27B target or another model currently available to the Groq account.
+
+The Qwen run also exposed an integration concern: provider reasoning must not be treated as user-visible target output. The executor requests hidden reasoning and removes residual `<think>` blocks before evaluation and report storage.
 
 
 ## Example run: detecting a fabricated disclosure

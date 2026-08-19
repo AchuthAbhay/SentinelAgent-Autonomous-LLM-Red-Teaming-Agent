@@ -13,8 +13,6 @@ async def adapter(state: RedTeamState) -> RedTeamState:
     or finish the run.
     """
 
-    state.current_turn += 1
-
     console.print("[bold cyan]Adapter[/]")
     console.print(f"Current Turn      : {state.current_turn}")
     console.print(f"Successful Attacks: {state.successful_attacks}")
@@ -35,6 +33,8 @@ async def adapter(state: RedTeamState) -> RedTeamState:
         log_decision(False)
 
         return state
+
+    state.current_turn += 1
 
     # --------------------------------------------------
     # Stop if budget exceeded
