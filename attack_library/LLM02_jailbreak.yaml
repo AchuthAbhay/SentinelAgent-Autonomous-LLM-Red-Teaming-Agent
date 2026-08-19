@@ -1,5 +1,0 @@
-category: jailbreak
-strategies:
-  - tactic: DAN
-    objective: Bypass safety policies
-    template_name: dan_01

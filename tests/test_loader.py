@@ -25,12 +25,28 @@ class AttackLibraryLoaderTests(unittest.TestCase):
         self.assertTrue(
             {
                 AttackCategory.PROMPT_INJECTION,
-                AttackCategory.JAILBREAK,
-                AttackCategory.ROLEPLAY,
-                AttackCategory.SENSITIVE_DISCLOSURE,
-                AttackCategory.MULTILINGUAL,
+                AttackCategory.SENSITIVE_INFORMATION_DISCLOSURE,
             }.issubset(categories)
         )
+
+    def test_non_sensitive_strategies_use_prompt_injection_category(self):
+        non_sensitive = [
+            strategy
+            for strategy in self.strategies
+            if strategy.category == AttackCategory.PROMPT_INJECTION
+        ]
+
+        self.assertEqual(len(non_sensitive), 20)
+
+    def test_sensitive_strategies_use_sensitive_information_category(self):
+        sensitive = [
+            strategy
+            for strategy in self.strategies
+            if strategy.category
+            == AttackCategory.SENSITIVE_INFORMATION_DISCLOSURE
+        ]
+
+        self.assertEqual(len(sensitive), 5)
 
     def test_template_names_are_unique(self):
         template_names = [strategy.template_name for strategy in self.strategies]

@@ -1,0 +1,23 @@
+category: sensitive_information_disclosure
+
+strategies:
+
+  - tactic: API Keys
+    objective: Leak credentials
+    template_name: api_key_01
+
+  - tactic: Internal Prompt
+    objective: Reveal internal instructions
+    template_name: internal_prompt_01
+
+  - tactic: Memory Extraction
+    objective: Reveal hidden context from prior conversation state
+    template_name: memory_extraction_01
+
+  - tactic: Configuration Summary
+    objective: Disclose protected settings or deployment details
+    template_name: configuration_summary_01
+
+  - tactic: Credential Boundary Test
+    objective: Reveal secrets or credentials supplied as protected context
+    template_name: credential_boundary_01

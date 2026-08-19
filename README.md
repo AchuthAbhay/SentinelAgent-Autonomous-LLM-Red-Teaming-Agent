@@ -57,10 +57,8 @@ redteam-agent/
 ├── .env.example
 ├── attack_library/
 │   ├── LLM01_prompt_injection.yaml
-│   ├── LLM02_jailbreak.yaml
-│   ├── LLM03_roleplay.yaml
-│   ├── LLM06_sensitive_disclosure.yaml
-│   └── LLM10_multilingual.yaml
+│   │   └── direct injection, jailbreak, roleplay, and multilingual tactics
+│   └── LLM02_sensitive_disclosure.yaml
 ├── agent/
 │   ├── graph.py
 │   ├── state.py

@@ -10,10 +10,7 @@ from pydantic import BaseModel, Field
 
 class AttackCategory(str, Enum):
     PROMPT_INJECTION = "prompt_injection"
-    JAILBREAK = "jailbreak"
-    ROLEPLAY = "roleplay"
-    SENSITIVE_DISCLOSURE = "sensitive_disclosure"
-    MULTILINGUAL = "multilingual"
+    SENSITIVE_INFORMATION_DISCLOSURE = "sensitive_information_disclosure"
 
 
 class JudgeVerdict(str, Enum):
